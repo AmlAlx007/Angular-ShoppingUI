@@ -1,3 +1,6 @@
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { AuthGuardService } from './service/auth-guard.service';
+import { CheckOutComponent } from './check-out/check-out.component';
 import { LoginComponent } from './login/login.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
@@ -12,7 +15,9 @@ const routes: Routes = [
 
   { path:'',component:HomeComponent },
   { path:'shoppingCart',component:ShoppingCartComponent },
-  { path:'my/orders',component:MyOrdersComponent },
+  { path:'my/orders',component:MyOrdersComponent, canActivate:[AuthGuardService] },
+  { path:'checkout',component:CheckOutComponent, canActivate: [AuthGuardService]},
+  { path:'order-success',component:OrderSuccessComponent, canActivate: [AuthGuardService] },
   { path:'admin/orders',component:AdminOrdersComponent },
   { path:'admin/products',component:AdminProductsComponent },
   { path:'login',component:LoginComponent}  

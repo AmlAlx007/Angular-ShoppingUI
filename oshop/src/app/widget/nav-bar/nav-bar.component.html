@@ -7,11 +7,12 @@
     <div class="left-side">
         <button mat-raised-button color="secondary" routerLink="/"> Home <mat-icon>home</mat-icon> </button>
         <button mat-raised-button color="secondary" routerLink="/shoppingCart"> Shopping Cart </button>
-        <button *ngIf="userDetails$ | async as userDetails; else unknownUser" mat-raised-button [matMenuTriggerFor]="usermenu" color="secondary">{{userDetails.displayName}}<mat-icon>keyboard_arrow_down</mat-icon> </button>
+        <button *ngIf="auth.userDetails$ | async as userDetails; else unknownUser" mat-raised-button [matMenuTriggerFor]="usermenu" color="secondary">{{userDetails.displayName}}<mat-icon>keyboard_arrow_down</mat-icon> </button>
         <mat-menu #usermenu="matMenu">
             <button mat-menu-item routerLink="/my/orders"> My Orders </button>
             <button mat-menu-item routerLink="/admin/orders"> Mange Orders </button>
             <button mat-menu-item routerLink="/admin/products"> Mange Products </button>
+            <button mat-menu-item routerLink="/checkout"> Checkout </button>
             <button mat-menu-item (click)="logout()">Log Out </button>
         </mat-menu>
     </div>

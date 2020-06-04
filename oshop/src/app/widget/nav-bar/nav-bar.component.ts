@@ -1,7 +1,7 @@
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase'
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'nav-bar',
@@ -10,18 +10,15 @@ import { Observable } from 'rxjs';
 })
 export class NavBarComponent implements OnInit {
   
-  userDetails$:Observable<firebase.User>
 
-  userDetails:firebase.User
-  constructor(private authenticate:AngularFireAuth) { 
-    this.userDetails$=authenticate.authState;
-  }
+  constructor(public auth:AuthService) { }
+
 
   ngOnInit(): void {
   }
 
   logout()
   {
-    this.authenticate.auth.signOut();
+    this.auth.logout()
   }
 }

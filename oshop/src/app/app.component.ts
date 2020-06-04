@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './service/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'oshop';
+  constructor(private auth:AuthService, private router:Router){
+    auth.userDetails$.subscribe(user => {
+      if(user)
+        this.router.navigate([localStorage.getItem('returnUrl')])
+    })
+
+  }
 }
