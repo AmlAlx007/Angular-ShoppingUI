@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+    </mat-menu>
+    <div class="left-side">
+        <button mat-raised-button color="secondary" routerLink="/"> Home <mat-icon>home</mat-icon> </button>
+        <button mat-raised-button color="secondary" routerLink="/shoppingCart"> Shopping Cart </button>
+        <button *ngIf="userDetails$ | async as userDetails; else unknownUser" mat-raised-button [matMenuTriggerFor]="usermenu" color="secondary">{{userDetails.displayName}}<mat-icon>keyboard_arrow_down</mat-icon> </button>
+        <mat-menu #usermenu="matMenu">
+            <button mat-menu-item routerLink="/my/orders"> My Orders </button>
+            <button mat-menu-item routerLink="/admin/orders"> Mange Orders </button>
+            <button mat-menu-item routerLink="/admin/products"> Mange Products </button>
+            <button mat-menu-item (click)="logout()">Log Out </button>
+        </mat-menu>
+    </div>
+    <div class="right-side">
+        <ng-template #unknownUser>
+            <button mat-raised-button color="secondary" routerLink="/login"> Login </button>
+        </ng-template>
+        <button mat-raised-button color="secondary"> Contact Us</button>
+    </div>
+    
+    
+</mat-toolbar>

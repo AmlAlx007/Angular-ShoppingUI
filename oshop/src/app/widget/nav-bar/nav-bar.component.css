@@ -1,0 +1,10 @@
+.right-side{
+    position: absolute;
+    right: 20px;
+}
+.right-side button{
+    margin-right: 10px;
+}
+.left-side button{
+    margin-left: 10px;
+}
