@@ -1,3 +1,6 @@
+import { AdminAuthGuard } from './service/admin-guard.service';
+import { UserService } from './service/user.service';
+import { AuthGuardService } from './service/auth-guard.service';
 import { AuthService } from './service/auth.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { NoAccessComponent } from './no-access/no-access.component';
 
 
 
@@ -35,7 +39,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService, UserService,AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

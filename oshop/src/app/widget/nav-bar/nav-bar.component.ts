@@ -1,6 +1,6 @@
 import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AppUser } from 'src/app/model/App-User';
 
 
 @Component({
@@ -10,11 +10,16 @@ import { Observable } from 'rxjs';
 })
 export class NavBarComponent implements OnInit {
   
+  appUser:AppUser;
 
-  constructor(public auth:AuthService) { }
+  constructor(private auth:AuthService) { 
+
+    auth.appUsers$.subscribe(value=>this.appUser=value)    
+  }
 
 
   ngOnInit(): void {
+    
   }
 
   logout()

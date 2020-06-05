@@ -13,7 +13,6 @@ export class AuthGuardService implements CanActivate {
   canActivate(route, state: RouterStateSnapshot){
 
     return this.auth.userDetails$.pipe(map(authValue=>{
-
       if(authValue) return true;
 
       this.router.navigate(['/login'],{queryParams:{'returnUrl':state.url}});
