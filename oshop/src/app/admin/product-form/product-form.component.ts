@@ -1,5 +1,7 @@
+import { ProductService } from './../../service/product.service';
 import { CategoryService } from './../../service/category.service';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'product-form',
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProductFormComponent implements OnInit {
   public show:boolean=true;
   public categoryList$:string[];
-  constructor(categoryService:CategoryService) { 
+  constructor(categoryService:CategoryService, private productService:ProductService) { 
     categoryService.getCategory().valueChanges().subscribe((result)=>{
         this.categoryList$=result
     });
@@ -17,9 +19,9 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submitForm(form)
+  submitForm(product)
   {
-    
+    this.productService.storeProduct(product);
   }
  
 

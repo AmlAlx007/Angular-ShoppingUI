@@ -2,7 +2,7 @@
 <table *ngIf="show" class="table">
     <tr>
         <td>
-            <form #form="ngForm" (ngSubmit)="submitForm(form.value)" class="product-form-css">
+            <form #product="ngForm" (ngSubmit)="submitForm(product.value)" class="product-form-css">
                 <mat-form-field>
                     <mat-label>Title</mat-label>
                     <input #title="ngModel" ngModel name="title" matInput type="text" required>
@@ -13,9 +13,14 @@
                 <mat-form-field>
                     <mat-label>Price($)</mat-label>
                     <span matPrefix>$  </span>
-                    <input #price="ngModel" ngModel name="price" matInput type="number" required/>
-                    <mat-error *ngIf="price.invalid && price.errors.required">
-                        This field is required !!!
+                    <input #price="ngModel" ngModel name="price" matInput type="number" custompricevalidator required />
+                    <mat-error *ngIf="price.invalid">
+                        <div  *ngIf="price.errors.required">
+                            This field is required !!!
+                        </div>
+                        <div *ngIf="price.errors.priceInvalid">
+                            Invalid Price Value!!!
+                        </div>
                     </mat-error>
                 </mat-form-field><br>
                 <mat-form-field>
@@ -27,9 +32,17 @@
                 </mat-form-field><br>
                 <mat-form-field>
                     <mat-label>Image URL(optional)</mat-label>
-                    <input ngModel name="imageUrl" matInput type="text"/>
+                    <input #url="ngModel" ngModel name="imageUrl" matInput type="text" required urlvalidator>
+                    <mat-error *ngIf="url.invalid">
+                        <div  *ngIf="url.errors.required">
+                            This field is required !!!
+                        </div>
+                        <div *ngIf="url.errors.urlInvalid">
+                            Invalid URL Value!!!
+                        </div>
+                    </mat-error>
                 </mat-form-field><br>
-                <button mat-raised-button [disabled]="!form.valid" >Save</button>
+                <button mat-raised-button [disabled]="!product.valid" >Save</button>
             </form>
         </td>
         <td>
@@ -40,3 +53,4 @@
 
     </tr>
 </table>
+

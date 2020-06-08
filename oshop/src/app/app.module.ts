@@ -26,6 +26,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductService } from './service/product.service';
+import { PriceValidator } from './common/errors/price.error';
+import { UrlValidator } from './common/errors/url.error';
+
 
 
 
@@ -43,7 +47,9 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AdminOrdersComponent,
     LoginComponent,
     NoAccessComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    PriceValidator,
+    UrlValidator
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,12 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AngularFireDatabaseModule,
     FormsModule
   ],
-  providers: [AuthService, AuthGuardService, UserService,AdminAuthGuard,CategoryService],
+  providers: [AuthService, 
+              AuthGuardService, 
+              UserService, 
+              AdminAuthGuard, 
+              CategoryService,
+              ProductService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
