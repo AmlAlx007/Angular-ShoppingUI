@@ -13,7 +13,10 @@ export class AppComponent {
     auth.userDetails$.subscribe(user => {
       if(user)
         userService.save(user)
-        this.router.navigate([localStorage.getItem('returnUrl')])
+        let url=localStorage.getItem('returnUrl')
+        if(url)
+          this.router.navigate([url])
+        
     })
 
   }

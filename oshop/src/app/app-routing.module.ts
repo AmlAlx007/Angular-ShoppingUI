@@ -1,3 +1,4 @@
+import { ProductsComponent } from './products/products.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { AdminAuthGuard } from './service/admin-guard.service';
 import { OrderSuccessComponent } from './order-success/order-success.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path:'order-success',component:OrderSuccessComponent, canActivate: [AuthGuardService] },
   { path:'admin/orders',component:AdminOrdersComponent, canActivate:[AuthGuardService,AdminAuthGuard]},
   { path:'admin/products',component:AdminProductsComponent, canActivate:[AuthGuardService, AdminAuthGuard] },
+  { path:'products',component:ProductsComponent },
   { path:'login',component:LoginComponent},
   { path:'no-access',component:NoAccessComponent},
   { path:'**',component:NoAccessComponent}

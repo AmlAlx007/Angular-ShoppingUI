@@ -1,0 +1,21 @@
+.product-form-css{
+    text-align: 100px;
+    margin-top: 100px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+.table img{
+    margin-top: 100px;
+    width: 500px;
+    height: 500px;
+}
+.table form{
+    margin-top: 100px;
+    width: 500px;
+    height: 500px;
+    background-color: palegreen;
+}
+.table mat-form-field, .table button{
+    margin: 20px
+
+}

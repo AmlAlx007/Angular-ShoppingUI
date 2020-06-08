@@ -1,0 +1,42 @@
+<button mat-button (click)="show=!show">new Product</button>
+<table *ngIf="show" class="table">
+    <tr>
+        <td>
+            <form #form="ngForm" (ngSubmit)="submitForm(form.value)" class="product-form-css">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input #title="ngModel" ngModel name="title" matInput type="text" required>
+                    <mat-error *ngIf="title.invalid && title.errors.required">
+                        This field is required !!!
+                    </mat-error>
+                </mat-form-field><br>
+                <mat-form-field>
+                    <mat-label>Price($)</mat-label>
+                    <span matPrefix>$  </span>
+                    <input #price="ngModel" ngModel name="price" matInput type="number" required/>
+                    <mat-error *ngIf="price.invalid && price.errors.required">
+                        This field is required !!!
+                    </mat-error>
+                </mat-form-field><br>
+                <mat-form-field>
+                    <mat-label>Category</mat-label>
+                    <select ngModel name="category" matNativeControl required>
+                        <option [value]=" "></option>
+                        <option *ngFor="let val of categoryList$" [value]="val.name">{{val.name}}</option>
+                    </select>
+                </mat-form-field><br>
+                <mat-form-field>
+                    <mat-label>Image URL(optional)</mat-label>
+                    <input ngModel name="imageUrl" matInput type="text"/>
+                </mat-form-field><br>
+                <button mat-raised-button [disabled]="!form.valid" >Save</button>
+            </form>
+        </td>
+        <td>
+            <div>
+                <img src="https://assets.bonappetit.com/photos/5c62e4a3e81bbf522a9579ce/master/pass/milk-bread.jpg">
+            </div>
+        </td>
+
+    </tr>
+</table>

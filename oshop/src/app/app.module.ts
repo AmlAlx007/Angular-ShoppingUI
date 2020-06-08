@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { CategoryService } from './service/category.service';
 import { AdminAuthGuard } from './service/admin-guard.service';
 import { UserService } from './service/user.service';
 import { AuthGuardService } from './service/auth-guard.service';
@@ -23,7 +25,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { NoAccessComponent } from './no-access/no-access.component';
-
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 
 
@@ -40,7 +42,8 @@ import { NoAccessComponent } from './no-access/no-access.component';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    NoAccessComponent
+    NoAccessComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +52,10 @@ import { NoAccessComponent } from './no-access/no-access.component';
     MatComponentsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
-  providers: [AuthService, AuthGuardService, UserService,AdminAuthGuard],
+  providers: [AuthService, AuthGuardService, UserService,AdminAuthGuard,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
