@@ -11,7 +11,7 @@ export class UrlValidator implements Validator{
     
     validate(event:AbstractControl):ValidationErrors | null
     {
-        if(!event.value.match('http://[a-zA-Z]+')){
+        if(!(event.value!=null && event.value.match('.*'))){
             return {urlInvalid:true}
         }
         return null

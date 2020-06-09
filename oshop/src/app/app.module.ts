@@ -25,7 +25,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { NoAccessComponent } from './no-access/no-access.component';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductFormComponent, ProductFormComponentDialog } from './admin/product-form/product-form.component';
 import { ProductService } from './service/product.service';
 import { PriceValidator } from './common/errors/price.error';
 import { UrlValidator } from './common/errors/url.error';
@@ -49,7 +49,8 @@ import { UrlValidator } from './common/errors/url.error';
     NoAccessComponent,
     ProductFormComponent,
     PriceValidator,
-    UrlValidator
+    UrlValidator,
+    ProductFormComponentDialog
   ],
   imports: [
     BrowserModule,

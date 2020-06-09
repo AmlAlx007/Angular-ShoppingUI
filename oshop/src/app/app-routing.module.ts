@@ -1,3 +1,4 @@
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductsComponent } from './products/products.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { AdminAuthGuard } from './service/admin-guard.service';
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path:'checkout',component:CheckOutComponent, canActivate: [AuthGuardService]},
   { path:'order-success',component:OrderSuccessComponent, canActivate: [AuthGuardService] },
   { path:'admin/orders',component:AdminOrdersComponent, canActivate:[AuthGuardService,AdminAuthGuard]},
+  { path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuardService,AdminAuthGuard]},
+  { path:'admin/products/:key', component:ProductFormComponent, canActivate:[AuthGuardService,AdminAuthGuard]},
   { path:'admin/products',component:AdminProductsComponent, canActivate:[AuthGuardService, AdminAuthGuard] },
   { path:'products',component:ProductsComponent },
   { path:'login',component:LoginComponent},

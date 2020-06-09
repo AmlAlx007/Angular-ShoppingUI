@@ -4,10 +4,16 @@
     margin-left: 300px;
     margin-right: 300px;
 }
-.table img{
+.table mat-card{
     margin-top: 100px;
     width: 500px;
     height: 500px;
+}
+.table mat-card img{
+    width: 250px;
+    height: 250px;
+    margin-left: 120px;
+    margin-top: 30px;
 }
 .table form{
     margin-top: 100px;
@@ -18,4 +24,14 @@
 .table mat-form-field, .table button{
     margin: 20px
 
+}
+.table mat-card-title{
+    margin: 10px;
+    font-size: 40px;
+    padding-left: 100px;
+}
+.table mat-card-subtitle{
+    margin: 5px;
+    font-size: 20px;
+    padding-left: 100px;
 }
