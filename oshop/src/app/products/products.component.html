@@ -1,1 +1,27 @@
-
+<div class="row">
+    <div class="col-2">
+        <mat-selection-list #category="ngModel" ngModel name="category" 
+                            [multiple]="false"  
+                            [routerLink]="['/products']"
+                            [queryParams]="{category: category.value}">
+            <mat-list-option value="all">All Category</mat-list-option>
+            <mat-list-option [value]="productCategory.name" *ngFor="let productCategory of categoryList$ | async">
+                {{productCategory.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+    <div class="col-10">
+        <mat-card *ngFor="let product of filteredProductList$; let i = index" class="product-card">
+            <img mat-card-image [src]="product.imageUrl" alt="Photo of a product">
+            <mat-card-content>
+                <mat-card-title>{{product.title}}</mat-card-title>
+                <mat-card-subtitle>{{product.price | currency:'EUR'}}</mat-card-subtitle>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Add to Cart</button>
+            </mat-card-actions>
+            <div *ngIf="(i+1)%2===0"></div>
+        </mat-card>
+    </div>
+</div>
+   

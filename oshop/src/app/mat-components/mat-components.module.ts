@@ -8,6 +8,9 @@ import { MatCardModule } from '@angular/material/card'
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   exports:[
@@ -19,7 +22,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatListModule
   ]
 })
 export class MatComponentsModule { }

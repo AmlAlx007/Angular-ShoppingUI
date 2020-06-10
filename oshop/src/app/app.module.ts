@@ -29,6 +29,7 @@ import { ProductFormComponent, ProductFormComponentDialog } from './admin/produc
 import { ProductService } from './service/product.service';
 import { PriceValidator } from './common/errors/price.error';
 import { UrlValidator } from './common/errors/url.error';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -60,7 +61,8 @@ import { UrlValidator } from './common/errors/url.error';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [AuthService, 
               AuthGuardService, 
