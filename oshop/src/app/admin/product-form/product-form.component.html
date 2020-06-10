@@ -1,61 +1,52 @@
-<table class="table">
-    <tr>
-        <td>
-            <form #product="ngForm" class="product-form-css" >
-                <mat-form-field>
-                    <mat-label>Title</mat-label>
-                    <input #title="ngModel" [(ngModel)]="productDetail$.title" name="title" matInput type="text" required>
-                    <mat-error *ngIf="title.invalid && title.errors.required">
+<div class="row">
+    <div class="col-5">
+        <form #product="ngForm" class="product-form-css" >
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input #title="ngModel" [(ngModel)]="productDetail$.title" name="title" matInput type="text" required>
+                <mat-error *ngIf="title.invalid && title.errors.required">
+                    This field is required !!!
+                </mat-error>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>Price($)</mat-label>
+                <span matPrefix>$  </span>
+                <input #price="ngModel" [(ngModel)]="productDetail$.price" name="price" matInput type="number" custompricevalidator required />
+                <mat-error *ngIf="price.invalid">
+                    <div  *ngIf="price.errors.required">
                         This field is required !!!
-                    </mat-error>
-                </mat-form-field><br>
-                <mat-form-field>
-                    <mat-label>Price($)</mat-label>
-                    <span matPrefix>$  </span>
-                    <input #price="ngModel" [(ngModel)]="productDetail$.price" name="price" matInput type="number" custompricevalidator required />
-                    <mat-error *ngIf="price.invalid">
-                        <div  *ngIf="price.errors.required">
-                            This field is required !!!
-                        </div>
-                        <div *ngIf="price.errors.priceInvalid">
-                            Invalid Price Value!!!
-                        </div>
-                    </mat-error>
-                </mat-form-field><br>
-                <mat-form-field>
-                    <mat-label>Category</mat-label>
-                    <select #category="ngModel" [(ngModel)]="productDetail$.category" name="category" matNativeControl required>
-                        <option [value]="category.value">{{category.value}}</option>
-                        <option *ngFor="let val of categoryList$" [value]="val.name">{{val.name}}</option>
-                    </select>
-                </mat-form-field><br>
-                <mat-form-field>
-                    <mat-label>Image URL(optional)</mat-label>
-                    <input #url="ngModel" [(ngModel)]="productDetail$.imageUrl" name="imageUrl" matInput type="text" required urlvalidator>
-                    <mat-error *ngIf="url.invalid">
-                        <div  *ngIf="url.errors.required">
-                            This field is required !!!
-                        </div>
-                        <div *ngIf="url.errors.urlInvalid">
-                            Invalid URL Value!!!
-                        </div>
-                    </mat-error>
-                </mat-form-field><br>
-                <pre>
-                    <button mat-raised-button color="primary" [disabled]="!product.valid" (click)="submitForm(product.value)" >Save</button>  <button *ngIf="(productDetail$ | json) != '{}'" (click)="deleteProduct()" mat-raised-button color="warn" >Delete</button> 
-                </pre>
-            </form>
-        </td>
-        <td>
-            <mat-card>
-                <img mat-card-image src="{{url.value}}" alt="Photo of a product">
-                <mat-card-header>
-                    <mat-card-title>{{title.value}}</mat-card-title>
-                    <mat-card-subtitle>{{price.value | currency:'EUR'}}</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
-        </td>
-
-    </tr>
-</table>
-
+                    </div>
+                    <div *ngIf="price.errors.priceInvalid">
+                        Invalid Price Value!!!
+                    </div>
+                </mat-error>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <select #category="ngModel" [(ngModel)]="productDetail$.category" name="category" matNativeControl required>
+                    <option [value]="category.value">{{category.value}}</option>
+                    <option *ngFor="let val of categoryList$" [value]="val.name">{{val.name}}</option>
+                </select>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>Image URL(optional)</mat-label>
+                <input #url="ngModel" [(ngModel)]="productDetail$.imageUrl" name="imageUrl" matInput type="text" required urlvalidator>
+                <mat-error *ngIf="url.invalid">
+                    <div  *ngIf="url.errors.required">
+                        This field is required !!!
+                    </div>
+                    <div *ngIf="url.errors.urlInvalid">
+                        Invalid URL Value!!!
+                    </div>
+                </mat-error>
+            </mat-form-field><br>
+            
+            <button mat-raised-button color="primary" [disabled]="!product.valid" (click)="submitForm(product.value)" >Save</button>  <button *ngIf="(productDetail$ | json) != '{}'" (click)="deleteProduct()" mat-raised-button color="warn" >Delete</button> 
+            
+        </form>
+    </div>
+    <div class="col-5">
+        <products-card class="product-card" [product]="product.value" [showActions]=false></products-card>
+    </div>
+</div>
+            

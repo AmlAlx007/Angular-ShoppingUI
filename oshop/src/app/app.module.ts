@@ -30,6 +30,8 @@ import { ProductService } from './service/product.service';
 import { PriceValidator } from './common/errors/price.error';
 import { UrlValidator } from './common/errors/url.error';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ProductsFilterCategoryComponent } from './products/products-filter-category/products-filter-category.component';
+import { ProductsCardComponent } from './products/products-card/products-card.component';
 
 
 
@@ -51,7 +53,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProductFormComponent,
     PriceValidator,
     UrlValidator,
-    ProductFormComponentDialog
+    ProductFormComponentDialog,
+    ProductsFilterCategoryComponent,
+    ProductsCardComponent
   ],
   imports: [
     BrowserModule,

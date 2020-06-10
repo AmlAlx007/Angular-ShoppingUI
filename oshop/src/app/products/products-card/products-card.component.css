@@ -1,0 +1,11 @@
+.product-card {
+    max-width: 250px;
+    margin: 50px;
+    padding: 50px;
+    float: left;
+    height: 300px;
+  }
+  mat-card img{
+    width: 100%;
+    height: 60%;
+  }

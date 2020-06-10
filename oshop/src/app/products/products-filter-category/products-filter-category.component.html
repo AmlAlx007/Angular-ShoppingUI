@@ -1,0 +1,10 @@
+<mat-selection-list #categorySelected="ngModel" ngModel name="category" 
+                [multiple]="false"  
+                [routerLink]="['/products']"
+                [queryParams]="{category: categorySelected.value}"
+                >
+    <mat-list-option  value="all">All Category</mat-list-option>
+    <mat-list-option   [value]="productCategory.name" *ngFor="let productCategory of categoryList$ | async">
+        {{productCategory.name}}
+    </mat-list-option>
+</mat-selection-list>

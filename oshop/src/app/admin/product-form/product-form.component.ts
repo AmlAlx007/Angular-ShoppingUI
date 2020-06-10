@@ -30,7 +30,6 @@ export class ProductFormComponent {
   }
   submitForm(product)
   {
-    console.log("in submit")
     if(this.key) this.productService.updateProduct(this.key,product)
     else this.productService.storeProduct(product);
     
