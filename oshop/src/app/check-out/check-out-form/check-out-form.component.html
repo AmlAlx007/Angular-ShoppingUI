@@ -1,0 +1,31 @@
+<h1>Check-Out Form</h1>
+<form [formGroup]="form">
+    <mat-form-field appearance="legacy">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput>
+        <mat-error>
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid"> Name Required !!!</div>
+        </mat-error>
+    </mat-form-field><br>
+    <mat-form-field appearance="legacy">
+        <mat-label>Address Line 1</mat-label>
+        <input formControlName="address1" matInput>
+        <mat-error>
+            <div class="alert alert-danger" *ngIf="address1.touched && address1.invalid"> Address Required !!!</div>
+        </mat-error>
+    </mat-form-field><br>
+    <mat-form-field appearance="legacy">
+        <mat-label>Address Line 2</mat-label>
+        <input formControlName="address2" matInput>
+    </mat-form-field><br>
+    <mat-form-field appearance="legacy">
+        <mat-label>City</mat-label>
+        <input formControlName="city" matInput>
+        <mat-error>
+            <div class="alert alert-danger" *ngIf="city.touched">
+                <div *ngIf="city.invalid">City Required !!!</div>
+                <div *ngIf="city.errors?.pattern">Pattern doesn't match !!!</div>
+            </div> 
+        </mat-error>
+    </mat-form-field>
+</form>

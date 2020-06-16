@@ -3,3 +3,9 @@
     width: 50%;
     margin-left: 310px;
 }
+.thumb-nail{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+}

@@ -4,50 +4,50 @@ import { ProductService } from './../service/product.service';
 import { Product } from '../model/product';
 import { take, switchMap, map } from 'rxjs/operators';
 import { GenerateCartIdService } from '../service/generate-cart-id.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { ShoppingCart } from '../model/shopping-cart';
 
 @Component({
   selector: 'products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnDestroy{
+export class ProductsComponent implements OnInit{
   productList$:Product[]=[];
   filteredProductList$:Product[]=[];
   categoryList$;
   category:string;
   product={} as Product
-  shoppingCart$
-  sub:Subscription
+  shoppingCart$:Observable<ShoppingCart>
 
   constructor(private productService:ProductService,
               private route:ActivatedRoute,
-              private generateCartIdService:GenerateCartIdService) { 
-      this.productService.getAllProducts().snapshotChanges().pipe(switchMap((res)=>{ 
-      this.productList$=res.map((result)=>{
-        this.product=result.payload.val()
-        this.product.key=result.key
-        return this.product})
-      return this.route.queryParamMap}))
-      .subscribe(params=>{
-        this.category=params.get('category')
-        if(this.category!=null)
-        {
-          this.filteredProductList$=(this.category!="all") ? this.productList$.filter(p=>p.category == this.category) : this.productList$
-        }else{
-          this.filteredProductList$=this.productList$
-        }
-      });
-    }
+              private generateCartIdService:GenerateCartIdService) { }
     async ngOnInit()
     {
-      this.sub=(await this.generateCartIdService.getCartObject()).valueChanges().subscribe(cart=>{
-        this.shoppingCart$=cart
-      })
+      this.shoppingCart$=(await this.generateCartIdService.getCartObject());
+      this.populateProduct();
     }
-    ngOnDestroy()
+    private populateProduct(){
+      this.productService.getAllProducts().snapshotChanges().pipe(switchMap((res)=>{ 
+        this.productList$=res.map((result)=>{
+          this.product=result.payload.val()
+          this.product.key=result.key
+          return this.product})
+        return this.route.queryParamMap}))
+        .subscribe(params=>{
+          this.category=params.get('category')
+          this.filterByCategory();
+        });
+    }
+    private filterByCategory()
     {
-      this.sub.unsubscribe()
+      if(this.category!=null)
+          {
+            this.filteredProductList$=(this.category!="all") ? this.productList$.filter(p=>p.category == this.category) : this.productList$
+          }else{
+            this.filteredProductList$=this.productList$
+          }
     }
 
 }

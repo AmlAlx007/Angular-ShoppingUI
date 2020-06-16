@@ -23,7 +23,6 @@ export class AdminProductsComponent {
    this.filteredProductList$=this.productList$= this.productService.getAllProducts().snapshotChanges()
     .pipe(map((res)=> res.map((result)=>{ return  {Product: result.payload.val(), key: result.key}
   })));
-      console.log(this.filteredProductList$)
   }
   
 }

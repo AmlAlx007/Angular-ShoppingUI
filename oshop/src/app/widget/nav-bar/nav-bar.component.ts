@@ -33,12 +33,7 @@ export class NavBarComponent implements OnInit{
     this.auth.logout()
   }
   async ngOnInit(){
-    this.cart$=(await this.generateCartIdService.getCartObject()).valueChanges().pipe(map( src => {
-      this.quantity=0
-      for(let val in src.items)
-        this.quantity+=src.items[val].quantity
-      return this.quantity
-    }));
+    this.cart$=(await this.generateCartIdService.getCartObject())
     
   }
 }

@@ -1,5 +1,5 @@
 import { GenerateCartIdService } from './service/generate-cart-id.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryService } from './service/category.service';
 import { AdminAuthGuard } from './service/admin-guard.service';
 import { UserService } from './service/user.service';
@@ -34,6 +34,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ProductsFilterCategoryComponent } from './products/products-filter-category/products-filter-category.component';
 import { ProductsCardComponent } from './products/products-card/products-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { CheckOutFormComponent } from './check-out/check-out-form/check-out-form.component';
+import { CheckOutCardComponent } from './check-out/check-out-card/check-out-card.component';
 
 
 
@@ -58,7 +60,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponentDialog,
     ProductsFilterCategoryComponent,
     ProductsCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    CheckOutFormComponent,
+    CheckOutCardComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService, 
               AuthGuardService, 

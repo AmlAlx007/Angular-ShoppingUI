@@ -1,7 +1,9 @@
+import { ShoppingCart } from 'src/app/model/shopping-cart';
 import { element } from 'protractor';
 import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { GenerateCartIdService } from '../service/generate-cart-id.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,31 +12,27 @@ import { GenerateCartIdService } from '../service/generate-cart-id.service';
 })
 export class ShoppingCartComponent implements OnInit{
 
-cart$
-quantity:number;
-price:number=0;
+  cart$:Observable<ShoppingCart>
+  shoppingCart:ShoppingCart;
+  quantity:number;
+  price:number=0;
+  cartId:string;
 
-ObjectKeys(val){
-  return Object.keys(val)
-}
+  ObjectKeys(value){
+    if(value!=null)
+      return Object.keys(value)
+  }
 
 
 constructor(private generateCartIdService:GenerateCartIdService){}
 
-async ngOnInit(){
+  async ngOnInit(){
+    this.cartId=localStorage.getItem('cartId')
+    this.cart$=(await this.generateCartIdService.getCartObject());
+  }
 
-  this.cart$=(await this.generateCartIdService.getCartObject()).valueChanges()
-   .pipe(map(element=>{
-      this.price=this.quantity=0
-      if(!element.items)
-          return null
-      for(let val in element.items)
-      {
-        this.quantity+=element.items[val].quantity
-        this.price+=element.items[val].quantity * element.items[val].product.price
-      }
-      return element
-   }));
-}
+  clearCart(cart:ShoppingCart){
+    this.generateCartIdService.clearCart() 
+  }
 
 }

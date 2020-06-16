@@ -20,9 +20,11 @@ export class GenerateCartIdService {
     })
   }
 
-  async getCartObject(): Promise<AngularFireObject<ShoppingCart>>{
+  async getCartObject(): Promise<Observable<ShoppingCart>>{
     let cartId=await this.getOrCreateCart()
-    return this.db.object<ShoppingCart>('/shopping-carts/'+cartId);
+    return this.db.object<ShoppingCart>('/shopping-carts/'+cartId).valueChanges().pipe(map(element=>{ 
+        return new ShoppingCart(element.items)
+      }));
   }
 
   private async getOrCreateCart()
@@ -56,5 +58,9 @@ export class GenerateCartIdService {
     });
   }
 
+  async clearCart(){
+    let cartId=await this.getOrCreateCart()
+    this.db.object('/shopping-carts/'+cartId+'/items').remove();
+  }
 
 }
