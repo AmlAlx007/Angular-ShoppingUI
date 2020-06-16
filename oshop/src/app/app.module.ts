@@ -1,3 +1,4 @@
+import { GenerateCartIdService } from './service/generate-cart-id.service';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from './service/category.service';
 import { AdminAuthGuard } from './service/admin-guard.service';
@@ -73,7 +74,8 @@ import { ProductsCardComponent } from './products/products-card/products-card.co
               UserService, 
               AdminAuthGuard, 
               CategoryService,
-              ProductService ],
+              ProductService,
+              GenerateCartIdService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

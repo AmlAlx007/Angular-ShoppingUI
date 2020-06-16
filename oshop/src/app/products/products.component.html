@@ -4,7 +4,7 @@
     </div>
     <div class="col-10">
         <ng-container *ngFor="let product of filteredProductList$; let i = index">
-                <products-card [product]="product" [showActions]=true></products-card>
+                <products-card [product]="product" [showActions]=true [shopping-cart]="shoppingCart$"></products-card>
                 <div *ngIf="(i+1)%2===0"></div>
         </ng-container>
     </div>

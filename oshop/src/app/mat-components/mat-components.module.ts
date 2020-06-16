@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   exports:[
@@ -25,7 +26,8 @@ import {MatListModule} from '@angular/material/list';
     MatDialogModule,
     MatSortModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatBadgeModule
   ]
 })
 export class MatComponentsModule { }

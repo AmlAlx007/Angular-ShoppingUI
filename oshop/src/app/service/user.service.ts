@@ -21,7 +21,6 @@ export class UserService {
 
   read(user:firebase.User):AngularFireObject<AppUser>
   {
-    console.log(user)
     return this.db.object('/user/'+user.uid);
   }
 

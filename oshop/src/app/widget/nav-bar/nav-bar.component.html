@@ -6,7 +6,9 @@
     </mat-menu>
     <div class="left-side">
         <button mat-raised-button color="secondary" routerLink="/"><mat-icon>home</mat-icon></button>
-        <button mat-raised-button color="secondary" routerLink="/shoppingCart"> Shopping Cart </button>
+        <button mat-raised-button color="secondary" routerLink="/shoppingCart" > 
+            Shopping Cart <span *ngIf="cart$ | async as cart" [matBadge]="cart" matBadgeOverlap="false" color="accent"></span>
+        </button>
         <button *ngIf="appUser; else unknownUser " mat-raised-button [matMenuTriggerFor]="usermenu" color="secondary">{{appUser.name}}<mat-icon>keyboard_arrow_down</mat-icon> </button>
         <mat-menu #usermenu="matMenu">
             <button mat-menu-item routerLink="/my/orders"> My Orders </button>

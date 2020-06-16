@@ -1,34 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from './../service/category.service';
 import { ProductService } from './../service/product.service';
 import { Product } from '../model/product';
-import { take, switchMap } from 'rxjs/operators';
+import { take, switchMap, map } from 'rxjs/operators';
+import { GenerateCartIdService } from '../service/generate-cart-id.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent{
+export class ProductsComponent implements OnInit, OnDestroy{
   productList$:Product[]=[];
   filteredProductList$:Product[]=[];
   categoryList$;
   category:string;
+  product={} as Product
+  shoppingCart$
+  sub:Subscription
 
   constructor(private productService:ProductService,
-    private route:ActivatedRoute) { 
-      this.productService.getAllProducts().valueChanges().pipe(take(1)).pipe(switchMap((products)=>{
-        this.productList$=products
-        return this.route.queryParamMap}))
-        .subscribe(params=>{
-          this.category=params.get('category')
-          if(this.category!=null)
-          {
-            this.filteredProductList$=(this.category!="all") ? this.productList$.filter(p=>p.category == this.category) : this.productList$
-          }else{
-            this.filteredProductList$=this.productList$
-          }
-        });
+              private route:ActivatedRoute,
+              private generateCartIdService:GenerateCartIdService) { 
+      this.productService.getAllProducts().snapshotChanges().pipe(switchMap((res)=>{ 
+      this.productList$=res.map((result)=>{
+        this.product=result.payload.val()
+        this.product.key=result.key
+        return this.product})
+      return this.route.queryParamMap}))
+      .subscribe(params=>{
+        this.category=params.get('category')
+        if(this.category!=null)
+        {
+          this.filteredProductList$=(this.category!="all") ? this.productList$.filter(p=>p.category == this.category) : this.productList$
+        }else{
+          this.filteredProductList$=this.productList$
+        }
+      });
     }
+    async ngOnInit()
+    {
+      this.sub=(await this.generateCartIdService.getCartObject()).valueChanges().subscribe(cart=>{
+        this.shoppingCart$=cart
+      })
+    }
+    ngOnDestroy()
+    {
+      this.sub.unsubscribe()
+    }
+
 }
