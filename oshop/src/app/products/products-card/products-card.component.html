@@ -5,10 +5,6 @@
         <mat-card-subtitle>{{product.price | currency:'EUR'}}</mat-card-subtitle>
     </mat-card-content>
     <mat-card-footer *ngIf="showActions">
-        <button *ngIf="getQuantity()==0; else updateQuantity" mat-raised-button class="btn-block" color="primary" (click)="addToCart(product)">Add to Cart</button>
-        <ng-template #updateQuantity>
-<pre><button (click)="deleteFromCart(product)" color="accent" mat-raised-button >-</button> {{getQuantity()}} in cart <button (click)="addToCart(product)" mat-raised-button color="accent">+</button></pre>
-        </ng-template>
-        
+        <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
     </mat-card-footer>
 </mat-card>

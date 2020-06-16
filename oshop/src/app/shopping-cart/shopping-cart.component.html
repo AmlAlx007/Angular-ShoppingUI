@@ -1,7 +1,39 @@
-<div *ngIf="(cart$ | async) as val">
-    {{val.getQuantity | json}}
-    <mat-list>
-        <mat-list-item *ngFor="let key of ObjectKeys(val.items)">{{val.items[key].product.title}}</mat-list-item>
-        
-    </mat-list>
+<h1>Shopping Cart</h1>
+
+ 
+<div *ngIf="(cart$ | async) as cart; else noitems">
+    <pre><b>{{quantity}} item(s) in cart</b></pre>
+    <table class="table" >
+        <thead>
+            <tr>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Product Quantity</th>
+              <th scope="col">Product Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let key of ObjectKeys(cart.items)">
+                <td>{{cart.items[key].product.title}}</td>
+                <td>{{cart.items[key].product.price | currency:'EUR'}}</td>
+                <td><product-quantity [product]="cart.items[key].product" [shopping-cart]="cart">{{cart.items[key].quantity}}</product-quantity></td>
+                <td>{{cart.items[key].product.price * cart.items[key].quantity | currency:'EUR'}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td scope="col"></td>
+                <td scope="col"><b>Total</b></td>
+                <td scope="col"></td>
+                <td scope="col"><b>{{price | currency : 'EUR'}}</b></td>
+            </tr>
+        </tfoot>
+    </table>
+    
 </div>
+<ng-template #noitems>
+    <pre><b>0 Items in the shopping cart !!!</b></pre>
+    <button routerLink="/products" mat-raised-button color="primary">Click here</button> to add products to shopping cart !!!
+</ng-template>
+
+<!--<product-quantity [product]="val.items[key]" [shopping-cart]="val">-->

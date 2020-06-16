@@ -1,0 +1,8 @@
+<button *ngIf="getQuantity()==0; else updateQuantity" mat-raised-button class="btn-block" color="primary" (click)="addToCart(product)">Add to Cart</button>
+    <ng-template #updateQuantity>
+        <div class="row">
+            <div class="col-4"><button class="btn  btn-primary" (click)="deleteFromCart(product)" color="accent" >-</button></div>
+            <div class="col-4">{{getQuantity()}} in cart</div>
+            <div class="col-4"><button class="btn  btn-primary" (click)="addToCart(product)"  color="accent">+</button></div>
+        </div>
+    </ng-template>

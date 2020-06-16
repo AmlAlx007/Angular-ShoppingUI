@@ -33,6 +33,7 @@ import { UrlValidator } from './common/errors/url.error';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ProductsFilterCategoryComponent } from './products/products-filter-category/products-filter-category.component';
 import { ProductsCardComponent } from './products/products-card/products-card.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 
 
@@ -56,7 +57,8 @@ import { ProductsCardComponent } from './products/products-card/products-card.co
     UrlValidator,
     ProductFormComponentDialog,
     ProductsFilterCategoryComponent,
-    ProductsCardComponent
+    ProductsCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,

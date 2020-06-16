@@ -11,6 +11,8 @@ import { GenerateCartIdService } from '../service/generate-cart-id.service';
 export class ShoppingCartComponent implements OnInit{
 
 cart$
+quantity:number;
+price:number=0;
 
 ObjectKeys(val){
   return Object.keys(val)
@@ -23,9 +25,14 @@ async ngOnInit(){
 
   this.cart$=(await this.generateCartIdService.getCartObject()).valueChanges()
    .pipe(map(element=>{
-      console.log(element)
-       if(!element.items)
-        return null
+      this.price=this.quantity=0
+      if(!element.items)
+          return null
+      for(let val in element.items)
+      {
+        this.quantity+=element.items[val].quantity
+        this.price+=element.items[val].quantity * element.items[val].product.price
+      }
       return element
    }));
 }

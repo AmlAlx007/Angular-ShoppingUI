@@ -1,6 +1,7 @@
-import { GenerateCartIdService } from './../../service/generate-cart-id.service';
+import { ShoppingCart } from './../../model/shopping-cart';
 import { Product } from './../../model/product';
 import { Component, OnInit, Input } from '@angular/core';
+import { GenerateCartIdService } from 'src/app/service/generate-cart-id.service';
 
 @Component({
   selector: 'products-card',
@@ -12,25 +13,7 @@ export class ProductsCardComponent {
   quantity:number;
  @Input('product') product:Product;
  @Input('showActions') showActions;
- @Input('shopping-cart') shoppingCart;
+ @Input('shopping-cart') shoppingCart:ShoppingCart;
 
- constructor(private generateCardId:GenerateCartIdService){}
-
- addToCart(product:Product){
-   this.generateCardId.addToCart(product)
- }
- deleteFromCart(product:Product)
- {
-   this.generateCardId.deleteFromCart(product)
- }
- getQuantity()
- {
-    if(this.shoppingCart.items!=null){
-      let product=this.shoppingCart.items[this.product.key]
-      if(product!=null)
-        return product.quantity
-    }
-    
-    return 0
- }
+ constructor(){}
 }
