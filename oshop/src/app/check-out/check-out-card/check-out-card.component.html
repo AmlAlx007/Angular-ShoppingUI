@@ -6,7 +6,16 @@
     <mat-card-content>
         <table class="table">
             <tr *ngFor="let item of ObjectKeys(shoppingCart.items)">
-                <td>{{shoppingCart.items[item].quantity}} x {{shoppingCart.items[item].product.title}}                {{shoppingCart.items[item].product.price*shoppingCart.items[item].quantity}}</td>
+                <td >{{shoppingCart.items[item].quantity}}</td> 
+                <td >x</td>
+                <td >{{shoppingCart.items[item].product.title}}</td>                
+                <td >{{shoppingCart.items[item].product.price*shoppingCart.items[item].quantity}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Total</td>
+                <td></td>
+                <td>{{shoppingCart.getTotalPrice()}}</td>
             </tr>
         </table>
     </mat-card-content>

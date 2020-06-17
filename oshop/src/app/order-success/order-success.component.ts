@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log(window.screen.width)
+   }
 
   ngOnInit(): void {
   }

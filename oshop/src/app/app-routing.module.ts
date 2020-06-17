@@ -21,7 +21,7 @@ const routes: Routes = [
   { path:'shoppingCart',component:ShoppingCartComponent },
   { path:'my/orders',component:MyOrdersComponent, canActivate:[AuthGuardService] },
   { path:'checkout',component:CheckOutComponent, canActivate: [AuthGuardService]},
-  { path:'order-success',component:OrderSuccessComponent, canActivate: [AuthGuardService] },
+  { path:'order-success/:id',component:OrderSuccessComponent, canActivate: [AuthGuardService] },
   { path:'admin/orders',component:AdminOrdersComponent, canActivate:[AuthGuardService,AdminAuthGuard]},
   { path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuardService,AdminAuthGuard]},
   { path:'admin/products/:key', component:ProductFormComponent, canActivate:[AuthGuardService,AdminAuthGuard]},

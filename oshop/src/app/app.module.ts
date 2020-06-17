@@ -1,3 +1,4 @@
+import { OrderService } from './service/order.service';
 import { GenerateCartIdService } from './service/generate-cart-id.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryService } from './service/category.service';
@@ -82,7 +83,8 @@ import { CheckOutCardComponent } from './check-out/check-out-card/check-out-card
               AdminAuthGuard, 
               CategoryService,
               ProductService,
-              GenerateCartIdService ],
+              GenerateCartIdService,
+              OrderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
